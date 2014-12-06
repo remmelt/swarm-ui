@@ -1,4 +1,4 @@
-# Swarm UI
+# Swarm UI ![](http://blog.docker.com/media/Screen-Shot-2014-10-02-at-8.58.46-AM.png =30x)
 
 ![](screenshot.png)
 
@@ -31,6 +31,3 @@ Neat!
 - This will currently only work with boot2docker. Fix it.
 - Make the base URL configurable
 - Add functionality as it is implemented in swarm
-
-
-
