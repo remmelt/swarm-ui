@@ -2,6 +2,7 @@
 
 <html>
 <head>
+  <title>swarm UI</title>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -10,7 +11,7 @@
       return this.indexOf(suffix, this.length - suffix.length) !== -1;
     };
 
-    var url = "http://boot2docker:80/";
+    var url = "http://192.168.59.103:80/";
 
     function pause(containerName, isPaused){
       var cmd = isPaused ? "unpause" : "pause";

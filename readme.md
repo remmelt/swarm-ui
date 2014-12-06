@@ -1,5 +1,7 @@
 # Swarm UI
 
+![](screenshot.png)
+
 ## Set up your swarm!
 1. Start a bunch of machines, for example on Digital Ocean. Use the docker image, smallest size will do.
 2. SSH into each machine, replace `/usr/bin/docker` with the one from the [master builds](https://master.dockerproject.com/linux/amd64/docker-1.3.2-dev)
@@ -13,7 +15,7 @@
 ## Start the UI
 1. Clone the repository: `git clone https://github.com/remmelt/swarm-ui.git`
 2. `run.sh <TOKEN>` will expose port 80 on the local machine or boot2docker VM
-3. Open the `:80` in your browser
+3. Open [192.168.59.103:80](http://192.168.59.103/) in your browser
 4. Note the kill (not delete!) and pause/unpause buttons.
 
 ## What's going on?
@@ -24,5 +26,11 @@ Besides swarm, it's running nginx. Nginx serves up the `index.html` that is curr
 Through the magic that is javascript and a couple of ajax calls to the swarm API, a table gets filled with the information about all nodes running in the swarm.
 
 Neat!
+
+## TODOs
+- This will currently only work with boot2docker. Fix it.
+- Make the base URL configurable
+- Add functionality as it is implemented in swarm
+
 
 
