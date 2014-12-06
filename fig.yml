@@ -1,0 +1,11 @@
+swarm:
+  build: dockerfiles/swarm
+  environment:
+  - TOKEN=62c9f5204579da0f86b8a05281c0f7ce
+
+ui:
+  build: dockerfiles/ui
+  links:
+  - swarm:swarm
+  ports:
+  - 80:80
