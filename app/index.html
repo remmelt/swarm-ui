@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"></link>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script type="text/javascript">
     String.prototype.endsWith = function(suffix) {
       return this.indexOf(suffix, this.length - suffix.length) !== -1;
@@ -12,38 +12,25 @@
 
     var url = "http://boot2docker:80/";
 
-  // $.getJSON(url + "info", function(data) {
-  //   var headers = "<tr>";
-  //   // console.log(data["DriverStatus"]);
-  //   $.each(data["DriverStatus"], function(key, val) {
-  //     // console.log(key, val[0]);
-  //     headers += "<th>" + val[0] + "</th>";
-  //   });
-  //   headers += "</tr>";
-  //   $("#matrix").append(headers);
-  // });
+    function pause(containerName, isPaused){
+      var cmd = isPaused ? "unpause" : "pause";
+      $.post(url + "containers" + containerName + "/" + cmd, function(){
+        updateContainers();
+      });
+    }
+    function kill(containerName, isPaused){
+      if(isPaused) {
+        pause(containerName, true);
+      }
+      $.post(url + "containers" + containerName + "/kill", function(){
+        updateContainers();
+      });
+    }
 
+    var nodeMap = {};
 
-
-function pause(containerName, isPaused){
-  var cmd = isPaused ? "unpause" : "pause";
-  $.post(url + "containers" + containerName + "/" + cmd, function(){
-    updateContainers();
-  });
-}
-function kill(containerName, isPaused){
-  if(isPaused) {
-    pause(containerName, true);
-  }
-  $.post(url + "containers" + containerName + "/kill", function(){
-    updateContainers();
-  });
-}
-
-var nodeMap = {};
-
-function updateContainers(){
-  $.getJSON(url + "containers/json", function(data){
+    function updateContainers(){
+      $.getJSON(url + "containers/json", function(data){
     // console.log(data);
     $("#matrix").find("tr:gt(0)").remove();
 
@@ -82,8 +69,8 @@ setInterval(updateContainers, 1500);
   <div class="panel panel-default" style="width: 90%; margin: 20px auto">
     <div class="panel-heading">Running containers</div>
     <div class="panel-body">
-    <p>This displays running containers on all hosts in your swarm.</p>
-  </div>
+      <p>This displays running containers on all hosts in your swarm.</p>
+    </div>
     <table id="matrix" class="table table-bordered table-hover">
       <thead>
         <tr>
