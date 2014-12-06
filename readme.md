@@ -1,4 +1,4 @@
-# Swarm UI ![](http://blog.docker.com/media/Screen-Shot-2014-10-02-at-8.58.46-AM.png =30x)
+# Swarm UI ![](badge.png)
 
 ![](screenshot.png)
 
